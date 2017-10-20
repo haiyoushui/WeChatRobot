@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" metadata-complete="true" version="3.1">
+  <servlet>  
+        <servlet-name>coreServlet</servlet-name>  
+        <servlet-class>  
+           com.isss.weixin.servlet.CoreServlet  
+        </servlet-class>  
+    </servlet>  
+  
+    <!-- url-pattern中配置的/coreServlet用于指定该Servlet的访问路径 -->  
+    <servlet-mapping>  
+        <servlet-name>coreServlet</servlet-name>  
+        <url-pattern>/coreServlet</url-pattern>  
+    </servlet-mapping>  
+ 
+
+  <servlet>
+    <servlet-name>contact-dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-*.xml</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>contact-dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>120</session-timeout>
+  </session-config>
+  <filter>
+    <filter-name>cors</filter-name>
+    <filter-class>com.eagle.WeChatRobot.filter.SimpleCORSFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>cors</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+</web-app>
