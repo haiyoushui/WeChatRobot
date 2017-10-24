@@ -1,8 +1,6 @@
-package com.isss.weixin.vo;
+package com.isss.weixin.pojo;
 
-import org.liufeng.weixin.util.WeixinUtil;
-
-import com.isss.weixin.pojo.AccessToken;
+import com.isss.weixin.util.WeixinUtil;
 
 public class PubInfoWeixin {
 	public static String APPID = "wx8e56f69c2328051c";

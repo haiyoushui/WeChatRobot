@@ -2,12 +2,13 @@ package com.isss.weixin.service;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import org.liufeng.weixin.util.WeixinUtil;
 import org.springframework.stereotype.Service;
 
+import com.isss.weixin.pojo.PubInfoWeixin;
 import com.isss.weixin.pojo.WeChatUser;
 import com.isss.weixin.pojo.WeixinOauth2Token;
-import com.isss.weixin.vo.PubInfoWeixin;
+import com.isss.weixin.util.WeixinUtil;
+
 import java.util.List;
   
 /** 

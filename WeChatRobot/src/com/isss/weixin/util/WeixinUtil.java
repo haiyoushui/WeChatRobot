@@ -1,4 +1,4 @@
-package org.liufeng.weixin.util;
+package com.isss.weixin.util;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.isss.weixin.pojo.AccessToken;
-import com.isss.weixin.vo.PubInfoWeixin;
+import com.isss.weixin.pojo.PubInfoWeixin;
 
 /**
  * 公众平台通用接口工具类

@@ -1,4 +1,4 @@
-package org.liufeng.weixin.util;
+package com.isss.weixin.util;
 
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;

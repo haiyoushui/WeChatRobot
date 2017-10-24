@@ -16,7 +16,7 @@ import com.isss.weixin.pojo.WXMeg;
 public class WeChatController {
 	@Autowired WXMegsService wxMegsService;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	@RequestMapping(value = "/wxText", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/wxText", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
 	public String weChat(WXMeg wxMeg) {
 		logger.info(wxMeg.getSysflag());

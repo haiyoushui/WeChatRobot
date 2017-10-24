@@ -1,11 +1,10 @@
 package com.isss.weixin.service;
 
-import org.liufeng.weixin.util.WeixinUtil;
-
 import com.eagle.WeChatRobot.utils.PubInfo;
+import com.isss.weixin.pojo.PubInfoWeixin;
 import com.isss.weixin.pojo.WeixinMenuClickButton;
 import com.isss.weixin.pojo.WeixinMenuViewButton;
-import com.isss.weixin.vo.PubInfoWeixin;
+import com.isss.weixin.util.WeixinUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;

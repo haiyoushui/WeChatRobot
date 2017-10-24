@@ -34,6 +34,6 @@
     </bean>
 
     <!--4.扫描web相关的bean-->
-    <context:component-scan base-package="com.isss.weixin.web"/>
+    <context:component-scan base-package="com.isss.*.web"/>
 
 </beans>
