@@ -167,15 +167,6 @@ public class HttpUtil {
         return result;  
     }  
   
-    /** 
-     * ���������������� 
-     *  
-     * @param args 
-     */  
-    public static void main(String[] args) {  
-//        Map<String, String> parameters = new HashMap<String, String>();  
-//        parameters.put("name", "sarin");  
-//        String result =sendGet("http://www.baidu.com", parameters);
-//        System.out.println(result); 
-    }  
+ 
+
 } 
