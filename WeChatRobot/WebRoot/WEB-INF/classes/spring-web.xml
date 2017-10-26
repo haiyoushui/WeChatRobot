@@ -32,7 +32,10 @@
         <property name="prefix" value="/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-
+	<!-- 配置文件上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+		<property name="defaultEncoding" value="UTF-8" />  
+	</bean> 
     <!--4.扫描web相关的bean-->
     <context:component-scan base-package="com.isss.*.web"/>
 
