@@ -5,6 +5,9 @@ public class PhoneMeg {
 	private String Time;
 	private String Version;
 	private String Remark;
+	private String SysVersion;
+	private String PhoneModel;
+	private String Location;
 	public String getIMEI() {
 		return IMEI;
 	}
@@ -28,6 +31,25 @@ public class PhoneMeg {
 	}
 	public void setRemark(String remark) {
 		Remark = remark;
+	}
+	
+	public String getSysVersion() {
+		return SysVersion;
+	}
+	public void setSysVersion(String sysVersion) {
+		SysVersion = sysVersion;
+	}
+	public String getPhoneModel() {
+		return PhoneModel;
+	}
+	public void setPhoneModel(String phoneModel) {
+		PhoneModel = phoneModel;
+	}
+	public String getLocation() {
+		return Location;
+	}
+	public void setLocation(String location) {
+		Location = location;
 	}
 	@Override
 	public String toString() {

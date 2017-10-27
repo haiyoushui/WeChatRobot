@@ -8,12 +8,12 @@
 		SELECT * FROM tbl_phone_allowlicense WHERE IMEI = #{IMEI}
 	</select>
 	<insert id="addAllowLicense" parameterType="AllowLicense">
-		insert into tbl_phone_allowlicense (IMEI,isallow,starttime,endtime,remark)
-		values ( #{IMEI},#{isAllow},#{startTime},#{endTime},#{remark})
+		insert into tbl_phone_allowlicense (IMEI,isallow,starttime,endtime,remark,function1,function2,function3,function4,function5,function6,function7,function8,function9)
+		values ( #{IMEI},#{isAllow},#{startTime},#{endTime},#{remark},#{function1},#{function2},#{function3},#{function4},#{function5},#{function6},#{function7},#{function8},#{function9})
 	</insert>
 	<update id="updataAllowLicense" parameterType="AllowLicense">
 		UPDATE tbl_phone_allowlicense SET isallow =#{isAllow},starttime =#{startTime},endtime
-		=#{endTime},remark=#{remark} WHERE IMEI =#{IMEI}
+		=#{endTime},remark=#{remark},function1=#{function1},function2=#{function2},function3=#{function3},function4=#{function4},function5=#{function5},function6=#{function6},function7=#{function7},function8=#{function8},function9=#{function9}  WHERE IMEI =#{IMEI}
 	</update>
 
 
@@ -26,12 +26,12 @@
 		SELECT * FROM tbl_phone_message WHERE IMEI = #{IMEI}
 	</select>
 	<insert id="addPhoneMeg" parameterType="PhoneMeg">
-		insert into tbl_phone_message (IMEI,logintime,version,remark)
-		values ( #{IMEI},#{Time},#{Version},#{Remark})
+		insert into tbl_phone_message (IMEI,logintime,version,remark,sysVersion,phoneModel,location)
+		values ( #{IMEI},#{Time},#{Version},#{Remark},#{SysVersion},#{PhoneModel},#{Location})
 	</insert>
 	<update id="updataPhoneMeg" parameterType="PhoneMeg">
-		UPDATE tbl_phone_message SET logintime =#{Time},version =#{Version},remark
-		=#{Remark} WHERE IMEI =#{IMEI}
+		UPDATE tbl_phone_message SET logintime =#{Time},version =#{Version},remark =#{Remark},sysVersion =#{SysVersion},phoneModel =#{PhoneModel},location
+		=#{Location} WHERE IMEI =#{IMEI}
 	</update>
 
 </mapper>

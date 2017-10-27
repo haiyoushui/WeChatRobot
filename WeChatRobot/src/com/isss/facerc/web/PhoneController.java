@@ -2,6 +2,7 @@ package com.isss.facerc.web;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eagle.WeChatRobot.service.WXMegsService;
 import com.isss.facerc.service.PhoneControllerService;
+import com.isss.facerc.util.Utils;
 import com.isss.liuh.vo.AllowLicense;
 import com.isss.liuh.vo.FacePepleInfo;
 import com.isss.liuh.vo.PhoneMeg;
@@ -32,13 +34,17 @@ public class PhoneController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	@RequestMapping(value = "/IsAllow", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
 	@ResponseBody
-	public ControllerResult<AllowLicense> PhoneC( @RequestBody Map<String,String> params   ) {
-		 logger.info("移动端请求使用权限"+params.toString());
+	public ControllerResult<AllowLicense> PhoneC( String PhoneModel, String Time,String Remark,String Version,String SysVersion,HttpServletRequest request ) {
+		 logger.info("移动端请求使用权限"+PhoneModel+Time+Utils.getIMEI(request));
 		PhoneMeg phoneMeg = new PhoneMeg();
-		phoneMeg.setIMEI(params.get("IMEI"));
-		phoneMeg.setTime(params.get("Time"));
-		phoneMeg.setRemark(params.get("Remark"));
-		phoneMeg.setVersion(params.get("Version"));
+		phoneMeg.setIMEI(Utils.getIMEI(request));
+		phoneMeg.setTime(Time);
+		phoneMeg.setRemark(Remark);
+		phoneMeg.setVersion(Version);
+		phoneMeg.setRemark(SysVersion);
+		phoneMeg.setPhoneModel(PhoneModel);
+	
+
 		logger.info("接收数据"+phoneMeg.toString());
 		AllowLicense allowLicense = phoneControService.phoneIsAllow(phoneMeg);
 		ControllerResult<AllowLicense> result = new ControllerResult<AllowLicense>(true,"成功");

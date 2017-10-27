@@ -22,17 +22,16 @@ public class PhoneControllerServiceImpl implements PhoneControllerService {
 		System.out.println(phoneMeg.toString());
 		AllowLicense allowLicenseR = null;
 		if(!DateUtils.Is30Minute(phoneMeg.getTime())) {
-			System.out.println("时间异常！");
+			logger.error("请求权限发现移动端时间异常！");
 			return null;
 		}else {
 			int status = 0;
 			PhoneMeg phoneMegR = phoneControllerDao.searchPhoneMeg(phoneMeg.getIMEI());
 			if(phoneMegR == null) {
-				phoneControllerDao.addPhoneMeg(phoneMeg);
 				AllowLicense allowLicense = new AllowLicense();
 				allowLicense.setIMEI(phoneMeg.getIMEI());
 				allowLicense.setStartTime(phoneMeg.getTime());
-				allowLicense.setEndTime(DateUtils.getCurrentDateTimeStr2(DateUtils.parseDateTime(phoneMeg.getTime()).getTime()+300*24*60*60*1000));
+				allowLicense.setEndTime(DateUtils.getCurrentDateTimeStr2(DateUtils.parseDateTime(phoneMeg.getTime()).getTime()+24*60*60*1000));
 				allowLicense.setRemark(phoneMeg.getTime());
 				int stateLicense = phoneControllerDao.addAllowLicense(allowLicense);
 				int statePhoneMeg = phoneControllerDao.addPhoneMeg(phoneMeg);
