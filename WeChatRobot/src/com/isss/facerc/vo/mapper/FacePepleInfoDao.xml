@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isss.facerc.dao.FacePepleInfoDao">
+
+	<insert id="addFaceInfo" parameterType="FacePepleInfo">
+		insert into
+		tbl_face_pepleinfo
+		(uid,groupid,uname,gender,birthday,uinfo,address,idcardaddress,ethnic,idcardid,time,IMEI,faceliveness,picPath)
+		values (
+		#{uid},#{groupid},#{uname},#{gender},#{birthday},#{uinfo},#{address},#{IDCardAddress},#{ethnic},#{IDCardId},#{time},#{IMEI},#{faceliveness},#{picPath})
+	</insert>
+	<update id="updataFaceInfo" parameterType="FacePepleInfo">
+		UPDATE
+		tbl_face_pepleinfo set groupid = #{groupid},uname = #{uname},uinfo =
+		#{uinfo},birthday = #{birthday},address = #{address},idcardaddress =
+		#{IDCardAddress},ethnic = #{ethnic},idcardid = #{IDCardId},
+		time =#{time},IMEI = #{IMEI},gender = #{gender},faceliveness =
+		#{faceliveness},picPath = #{picPath} WHERE uid =#{uid}
+	</update>
+
+	<update id="updataPicPath" parameterType="String">
+		UPDATE
+		tbl_face_pepleinfo set picPath = #{picPath} WHERE uid =#{uid}
+	</update>
+	<select id="searchPicPath" parameterType="String" resultType="String">
+		SELECT picPath FROM tbl_face_pepleinfo WHERE uid = #{uid}
+	</select>
+
+
+	<select id="searchFacePepleInfoById" parameterType="String"
+		resultType="FacePepleInfo">
+		SELECT uid,groupid,uname,gender,birthday,uinfo,address,idcardaddress,ethnic,idcardid,time,IMEI,faceliveness,picPath FROM tbl_face_pepleinfo WHERE uid = #{uid}
+	</select>
+
+	<select id="searchFacePepleInfoAll" parameterType="int"
+		resultType="FacePepleInfo">
+		SELECT uid,groupid,uname,gender,birthday,uinfo,address,idcardaddress,ethnic,idcardid,time,IMEI,faceliveness,picPath FROM tbl_face_pepleinfo limit #{line},#{number}
+	</select>
+
+
+</mapper>

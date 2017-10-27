@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.isss.facerc.dao.PhoneControllerDao">
+	<select id="searchAllowLicense" parameterType="String"
+		resultType="AllowLicense">
+		SELECT * FROM tbl_phone_allowlicense WHERE IMEI = #{IMEI}
+	</select>
+	<insert id="addAllowLicense" parameterType="AllowLicense">
+		insert into tbl_phone_allowlicense (IMEI,isallow,starttime,endtime,remark)
+		values ( #{IMEI},#{isAllow},#{startTime},#{endTime},#{remark})
+	</insert>
+	<update id="updataAllowLicense" parameterType="AllowLicense">
+		UPDATE tbl_phone_allowlicense SET isallow =#{isAllow},starttime =#{startTime},endtime
+		=#{endTime},remark=#{remark} WHERE IMEI =#{IMEI}
+	</update>
+
+
+
+
+
+
+
+	<select id="searchPhoneMeg" parameterType="String" resultType="PhoneMeg">
+		SELECT * FROM tbl_phone_message WHERE IMEI = #{IMEI}
+	</select>
+	<insert id="addPhoneMeg" parameterType="PhoneMeg">
+		insert into tbl_phone_message (IMEI,logintime,version,remark)
+		values ( #{IMEI},#{Time},#{Version},#{Remark})
+	</insert>
+	<update id="updataPhoneMeg" parameterType="PhoneMeg">
+		UPDATE tbl_phone_message SET logintime =#{Time},version =#{Version},remark
+		=#{Remark} WHERE IMEI =#{IMEI}
+	</update>
+
+</mapper>
