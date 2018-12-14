@@ -4,9 +4,9 @@ import net.sf.json.JSONObject;
 
 import org.springframework.stereotype.Service;
 
-import com.isss.weixin.pojo.PubInfoWeixin;
-import com.isss.weixin.pojo.WeChatUser;
+import com.isss.liuh.vo.WeChatUser;
 import com.isss.weixin.pojo.WeixinOauth2Token;
+import com.isss.weixin.util.PubInfoWeixin;
 import com.isss.weixin.util.WeixinUtil;
 
 import java.util.List;
@@ -33,13 +33,10 @@ public class UserinofService {
 	 * @return WeixinAouth2Token
 	 */
 	public WeixinOauth2Token getOauth2AccessToken( String code) {
-		/**
-		 * 欢迎大家关注我的博客，如有疑问，请加qq群：454796847、135430763 共同进步！
-    	也可以浏览我的博客，左侧有支付宝和微信的捐款二维码！
-		 */
+	
 		WeixinOauth2Token wat = null;
 		// 拼接请求地址
-		String requestUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
+		String requestUrl = PubInfoWeixin.getOauth2AccessToken;
 		requestUrl = requestUrl.replace("APPID", PubInfoWeixin.APPID);
 		requestUrl = requestUrl.replace("SECRET", PubInfoWeixin.APPSECRET);
 		requestUrl = requestUrl.replace("CODE", code);
@@ -72,8 +69,9 @@ public class UserinofService {
 	public WeChatUser getSNSUserInfo(String accessToken, String openId) {
 		WeChatUser wcu = null;
 		// 拼接请求地址
-		String requestUrl = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID";
+		String requestUrl = PubInfoWeixin.getUserInfo;
 		requestUrl = requestUrl.replace("ACCESS_TOKEN", accessToken).replace("OPENID", openId);
+		System.out.println(requestUrl);
 		// 通过网页授权获取用户信息
 		JSONObject jsonObject = WeixinUtil.httpRequest(requestUrl, "GET", null);
 
@@ -103,4 +101,5 @@ public class UserinofService {
 		}
 		return wcu;
 	}
+
 }  

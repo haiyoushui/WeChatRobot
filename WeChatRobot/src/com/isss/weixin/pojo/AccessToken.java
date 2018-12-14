@@ -43,4 +43,10 @@ public class AccessToken {
 			return true;//超出有效时间
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "AccessToken [token=" + token + ", expiresIn=" + expiresIn + ", outTime=" + outTime + "]";
+	}
+	
 }

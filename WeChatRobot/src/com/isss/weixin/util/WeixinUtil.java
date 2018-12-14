@@ -20,7 +20,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.isss.weixin.pojo.AccessToken;
-import com.isss.weixin.pojo.PubInfoWeixin;
 
 /**
  * 公众平台通用接口工具类
@@ -39,10 +38,10 @@ public class WeixinUtil {
 	 * @param appsecret 密钥 
 	 * @return 
 	 */  
-	public static AccessToken getAccessToken() {  
+	public static AccessToken getAccessToken(String APPID,String APPSECRET) {  
 	    AccessToken accessToken = null;  
 	  
-	    String requestUrl = PubInfoWeixin.access_token_url.replace("APPID", PubInfoWeixin.APPID).replace("APPSECRET", PubInfoWeixin.APPSECRET);  
+	    String requestUrl = PubInfoWeixin.access_token_url.replace("APPID", APPID).replace("APPSECRET", APPSECRET);  
 	    JSONObject jsonObject = httpRequest(requestUrl, "GET", null);  
 	    // 如果请求成功   
 	    if (null != jsonObject) {  
@@ -116,6 +115,7 @@ public class WeixinUtil {
 			inputStream.close();
 			inputStream = null;
 			httpUrlConn.disconnect();
+			System.out.println(buffer.toString());
 			jsonObject = JSONObject.fromObject(buffer.toString());
 		} catch (ConnectException ce) {
 			log.error("Weixin server connection timed out.");

@@ -1,146 +1,72 @@
-﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>My JSP 'index.jsp' starting page</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-	  <style type="text/css">
-	  body{
-	  background-color: #FCFCFC}
-   div{
-   margin-left: 100px;
-   margin-top: 20px;
-   }
-    #head{
-    margin: auto;}
-    .form{
-    height: 40px;
-    width: 180px;}
-    
-    #familysubmit{
-    display: none;
-    }
-    .error{
-    	display: none;
-    }
-    #serchname{
-    		display: none;
-    }
-   </style>
-  </head>
-  
-  <body>
-  <h1 id="head">欢迎进入订餐系统</h1>
- 
-   		<div>
-      		手机：<input id="mobilephone" name="mobilephone" type="text" placeholder="输入手机号"></input>
-      		<input type="button" id="submit"  onclick="serchname()" value="提交"/>
-  		</div>
-      <p id="phoneError" class="error">*未找到相应信息！</p>
-   		<div id="serchname">
-   				姓名：<input></input>
-   		</div>
-   <div>
-   <form action="">
-			<input name="radio1" type="radio" value="self"  onclick="chosefamily()">单人
-			<input name="radio1" type="radio" value="family"  onclick="chosefamily()">家属
-    	<div id="familysubmit">
-    		订餐数量：<input id="num"  name="num" type="text"></input>
-    		<input id="submitnum" type="button" onclick="familsub()" value="提交订单">
-    	</div>  
-	</form>
-   </div>
- 
-   <script type="text/javascript">
-      var mobilephone = document.getElementById("mobilephone").value;
-      var submit = document.getElementById("submit");
-      var familysubmit =  document.getElementById("familysubmit");
-      var order = document.getElementById("num");
-      var submitnum  = document.getElementById("submitnum");
-      var num = 1;
-      
-       function serchname(){    
-   		var myreg = /^1[3458]\d{9}$/;
-   		if (mobilephone.length!=11){
-				alert('请输入正确的手机号')
-			}else{
-     		getName();
-     } 
-  }   
-     
-     //提交订单
-     function ordering(num){
-     var xmlhttp;
-	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-  	xmlhttp=new XMLHttpRequest();
- 	 }
-	else{// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-	xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
-    }
-  }
-	xmlhttp.open("POST","<%=path%>/OrderServelet",true);
-	xmlhttp.send("num=3");
-     }
-     
-     //通过手机号查人名
-     function getName()
-	{
-		alert("name")
-	var xmlhttp;
-	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-  	xmlhttp=new XMLHttpRequest();
- 	 }
-	else{// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-	xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    document.getElementById("name").innerHTML=xmlhttp.responseText;
-    }
-  }
-	xmlhttp.open("GET","<%=path%>/OrderServelet?mobilephone=mobilephone",true);
-	xmlhttp.send();
-    }
-     //家属的chekbox是否选中
-      function chosefamily(){
-        var obj  = document.getElementsByName('radio1');
-        for(var i=0;i<obj.length;i++){
-            if(obj[i].checked==true){
-                if(obj[i].value=='self'){
-                   ordering(1);
-                }else if(obj[i].value=='family'){
-                	familysubmit.style.display="block";
+<head>
+    <title>login test</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="ajax方式">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        function login() {
+            $.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/WeChatRobot/WeChatConfig/addWechatSurvey" ,//url
+                data: $('#form1').serialize(),
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result.resultCode == 200) {
+                        alert("SUCCESS");
+                    }
+                    ;
+                },
+                error : function() {
+                    alert("异常！");
                 }
-            }
+            });
         }
-    }
-     function familsub(){
-     ordering(order.value);
-     }
-   </script>
-   
-   
-  </body>
+		        function update() {
+            $.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/WeChatRobot/WeChatConfig/updateWechatSurvey" ,//url
+                data: $('#form1').serialize(),
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result.resultCode == 200) {
+                        alert("SUCCESS");
+                    }
+                    ;
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div id="form-div">
+    <form id="form1" onsubmit="return false" action="##" method="post">
+        <p>surveyId：<input name="surveyId" type="text" id="surveyId" tabindex="1" size="15" value=""/></p>
+        <p>wechatID：<input name="wechatID" type="text" id="wechatID" tabindex="2" size="16" value=""/></p>
+		<p>公众号名称：<input name="wechatName" type="text" id="wechatName" tabindex="3" size="15" value=""/></p>
+        <p>APPID：<input name="APPID" type="text" id="APPID" tabindex="4" size="16" value=""/></p>
+		<p>APPSECRET：<input name="APPSECRET" type="text" id="APPSECRET" tabindex="5" size="15" value=""/></p>
+        <p>TOKEN：<input name="TOKEN" type="text" id="TOKEN" tabindex="6" size="16" value=""/></p>
+		<p>微信后台用户名：<input name="wechatAccount" type="text" id="wechatAccount" tabindex="7" size="15" value=""/></p>
+        <p>微信后台密码：<input name="wechatPassword" type="text" id="wechatPassword" tabindex="8" size="16" value=""/></p>
+		<p>用户问卷表名：<input name="wechatUserTable" type="text" id="wechatUserTable" tabindex="9" size="15" value=""/></p>  
+        <p>提示语：<input name="reminder" type="text" id="reminder" tabindex="10" size="16" value=""/></p>
+        <p>备注：<input name="remark" type="text" id="remark" tabindex="10" size="16" value=""/></p>
+        <p>创建人：<input name="creatuser" type="text" id="creatuser" tabindex="10" size="16" value=""/></p>
+        <p><input type="button" value="添加" onclick="login()">&nbsp;<input type="reset" value="更新"onclick="update()"></p>
+    </form>
+</div>
+</body>
 </html>

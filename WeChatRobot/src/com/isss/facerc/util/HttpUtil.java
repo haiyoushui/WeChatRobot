@@ -31,6 +31,7 @@ public class HttpUtil {
         String params = "";// ����֮��Ĳ���
         try {
             // �����������  
+        	 if(parameters!=null) {
             if(parameters.size()==1){
                 for(String name:parameters.keySet()){
                     sb.append(name).append("=").append(
@@ -47,6 +48,7 @@ public class HttpUtil {
                 String temp_params = sb.toString();  
                 params = temp_params.substring(0, temp_params.length() - 1);  
             }
+        	 }
             String full_url = url + "?" + params; 
             System.out.println(full_url); 
             // ����URL����  

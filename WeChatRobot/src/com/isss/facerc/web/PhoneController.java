@@ -22,6 +22,7 @@ import com.isss.liuh.vo.AllowLicense;
 import com.isss.liuh.vo.FacePepleInfo;
 import com.isss.liuh.vo.PhoneMeg;
 import com.isss.weixin.pojo.ControllerResult;
+import com.isss.weixin.service.CoreService;
 /**
  * 返回给手机端使用权限
  * @author LiuH

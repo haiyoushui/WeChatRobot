@@ -8,8 +8,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.isss.weixin.pojo.WeChatUser;
+
+import com.isss.liuh.vo.WeChatUser;
 import com.isss.weixin.pojo.WeixinOauth2Token;
 import com.isss.weixin.service.UserinofService;
 
@@ -28,8 +30,9 @@ public class WeXinUserInfoController {
      */  
 	@RequestMapping(value = "/userinfo/user", method = RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
     @ResponseBody
-    public void check(HttpSession session, Map<String, Object> model,HttpServletRequest request,HttpServletResponse response) {  
+    public void check(HttpSession session, Map<String, Object> model,HttpServletRequest request,HttpServletResponse response,@RequestParam("sampleId")String sampleId,@RequestParam("surveyId")String surveyId) {  
         String code = request.getParameter("code");//我们要的code  
+        System.out.println(surveyId+"####"+sampleId);
         try {  
      		if (!"authdeny".equals(code)) {
     			// 获取网页授权access_token
@@ -44,14 +47,13 @@ public class WeXinUserInfoController {
     			WeChatUser wcu = userinfoService.getSNSUserInfo(accessToken, openId);// 设置要传递的参数
     		    request.setAttribute("wcu", wcu);
     			  System.out.println("@@###调通"+wcu.toString());
+
      		}
      		// 跳转到index.jsp
      		request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
-      
-
     }  
 
 

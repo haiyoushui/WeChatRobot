@@ -1,4 +1,4 @@
-package com.isss.weixin.pojo;
+package com.isss.liuh.vo;
 
 import java.util.List;
 
@@ -24,6 +24,28 @@ public class WeChatUser {
 	private String headImgUrl;
 	// 用户特权信息
 	private List<String> privilegeList;
+	private String subscribeTime;
+	private int subscribe;
+	private String Language;
+	public String getLanguage() {
+		return Language;
+	}
+	public void setLanguage(String language) {
+		Language = language;
+	}
+	public int getSubscribe() {
+		return subscribe;
+	}
+	public void setSubscribe(int subscribe) {
+		this.subscribe = subscribe;
+	}
+	public String getSubscribeTime() {
+		return subscribeTime;
+	}
+	public void setSubscribeTime(String subscribeTime) {
+		this.subscribeTime = subscribeTime;
+	}
+
 	public String getOpenId() {
 		return openId;
 	}

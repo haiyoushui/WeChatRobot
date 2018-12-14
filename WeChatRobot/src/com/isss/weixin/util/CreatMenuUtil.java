@@ -1,17 +1,15 @@
-package com.isss.weixin.service;
+package com.isss.weixin.util;
 
 import com.eagle.WeChatRobot.utils.PubInfo;
-import com.isss.weixin.pojo.PubInfoWeixin;
 import com.isss.weixin.pojo.WeixinMenuClickButton;
 import com.isss.weixin.pojo.WeixinMenuViewButton;
-import com.isss.weixin.util.WeixinUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class CreatMenu {
+public class CreatMenuUtil {
 
-	public static void main(String[] args) {
+	public static void creatMemus(String ACCESS_TOKEN) {
 	     
 		WeixinMenuClickButton cbt=new WeixinMenuClickButton();
         cbt.setKey("image");
@@ -21,9 +19,9 @@ public class CreatMenu {
          
         WeixinMenuViewButton vbt=new WeixinMenuViewButton();
 		String isssurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-		isssurl = isssurl.replace("APPID", PubInfoWeixin.APPID).replace(  
-                "REDIRECT_URI", WeixinUtil.urlEncodeUTF8("http://weixinliuhao.tunnel.qydev.com/WeChatRobot/WeXinUserInfo/userinfo/user"));
-		
+		/*isssurl = isssurl.replace("APPID", PubInfoWeixin.APPID).replace(  
+                "REDIRECT_URI", WeixinUtil.urlEncodeUTF8("http://ibevus.natappfree.cc/WeChatRobot/WeXinUserInfo/userinfo/user"));
+		*/
         vbt.setUrl(isssurl);
         vbt.setName("博客");
         vbt.setType("view");
@@ -46,7 +44,7 @@ public class CreatMenu {
         menujson.put("button", button);
         System.out.println(menujson);
         //这里为请求接口的url   +号后面的是token，这里就不做过多对token获取的方法解释
-        String url = PubInfoWeixin.menu_create_url.replace("ACCESS_TOKEN", PubInfoWeixin.getAccessTocken().getToken());
+        String url = PubInfoWeixin.menu_create_url.replace("ACCESS_TOKEN", ACCESS_TOKEN);
         try{
             String rs=WeixinUtil.httpRequest(url,"POST", menujson.toString()).toString();
             System.out.println(rs);
